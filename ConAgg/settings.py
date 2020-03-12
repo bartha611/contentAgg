@@ -11,12 +11,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-# import environ
+from dotenv import load_dotenv
 
-# env = environ.Env(
-#     DEBUG=(bool, False)
-# )
-# environ.Env.read_env()
+load_dotenv()
+
+NEWSAPI = os.getenv("NEWS_API")
+NYTIMESAPI = os.getenv("NYTIMESKEY")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'frontend',
-    'scraper'
+    'scraper',
+    'Profile',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
