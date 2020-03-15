@@ -11,12 +11,13 @@
   },
   "parser": "babel-eslint",
   "rules": {
+    "import/extensions": "off",
     "no-console": "off",
     "import/no-unresolved": "off",
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [".js", ".jsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
     "prettier/prettier": [

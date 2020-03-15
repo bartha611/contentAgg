@@ -1,23 +1,21 @@
 from django.shortcuts import render
 from django.http import Http404
 from rest_framework import generics
-from .serializers import articleSerializer
+from .serializers import websiteSerializer
 from .models import Article, NewsWebsite
 # Create your views here.
 
 
 class articleList(generics.ListAPIView):
-    serializer_class = articleSerializer
+    serializer_class = websiteSerializer
 
     def get_queryset(self):
-        queryset = Article.objects.all()
-        website = self.request.query_params.get('website', None)
-        if website is not None:
+        queryset = NewsWebsite.objects.all()
+        category = self.request.query_params.get('category', None)
+        if category is not None:
             try:
-                website.replace(" ", "-")
-                newsWebsite = NewsWebsite.objects.get(
-                    search_id__iexact=website)
-                queryset = Article.objects.filter(news_website=newsWebsite.id)
+                queryset = NewsWebsite.objects.filter(
+                    category__iexact=category)
             except:
                 raise Http404
         return queryset

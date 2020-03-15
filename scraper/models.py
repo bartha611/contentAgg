@@ -29,7 +29,8 @@ class NewsWebsite(models.Model):
 
 
 class Article(models.Model):
-    news_website = models.ForeignKey(NewsWebsite, on_delete=models.CASCADE)
+    news_website = models.ForeignKey(
+        NewsWebsite, related_name="articles", on_delete=models.CASCADE)
     url = models.URLField()
     title = models.CharField(max_length=200)
     createdat = models.DateField(

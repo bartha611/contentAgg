@@ -1,22 +1,29 @@
+const BundleTracker = require("webpack-bundle-tracker");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
 module.exports = {
-  entry: "./frontend/src/blah.jsx",
+  entry: "./frontend/static/index.tsx",
   output: {
-    path: `${__dirname}/frontend/static/frontend/`,
-    filename: "bundle.js"
+    path: `${__dirname}/frontend/static/dist`,
+    filename: "[name]-[hash].js"
   },
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx", ".ts", ".tsx"]
   },
   devtool: "source-map",
   module: {
     rules: [
       {
-        test: /\.jsx?/,
+        test: /\.tsx?/,
         exclude: /node_modules/,
-        use: ["babel-loader", "eslint-loader"]
+        use: ["ts-loader"]
       }
     ]
   },
+  plugins: [
+    new BundleTracker({ filename: "./webpack.stats.json" }),
+    new CleanWebpackPlugin()
+  ],
   watchOptions: {
     poll: true,
     ignored: /node_modules/
