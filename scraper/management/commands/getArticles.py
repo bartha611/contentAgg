@@ -10,6 +10,7 @@ class Command(BaseCommand):
             "http://newsapi.org/v2/sources?language=en&apiKey={}".format(settings.NEWSAPI))
         for source in response.json()["sources"]:
             website = NewsWebsite.objects.get(name=source["name"])
+            Article.objects.filter(news_website=website).delete()
             articles = requests.get(
                 "http://newsapi.org/v2/top-headlines?sources={}&apiKey={}".format(source["id"], settings.NEWSAPI))
             if articles.status_code == 200:
@@ -20,6 +21,4 @@ class Command(BaseCommand):
                     entry.title = article["title"]
                     entry.save()
             else:
-                print("News source {} articles couldn't not be added".format(
-                    source["name"]))
                 continue

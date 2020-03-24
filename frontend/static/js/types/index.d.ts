@@ -3,8 +3,10 @@ export interface article {
   url: string;
 }
 
-export interface websites {
+export interface website {
+  id: number;
   name: string;
   category: string;
+  clicks: number;
   articles: article[];
 }

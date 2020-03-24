@@ -8,6 +8,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         secret = settings.NYTIMESAPI
         website = NewsWebsite.objects.get(name="NY Times")
+        Article.objects.filter(news_website=website).delete()
         response = requests.get(
             "https://api.nytimes.com/svc/topstories/v2/home.json?api-key={}".format(secret))
         i = 0

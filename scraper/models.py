@@ -20,6 +20,7 @@ class NewsWebsite(models.Model):
     url = models.URLField()
     category = models.CharField(
         choices=categories, default="general", max_length=15)
+    clicks = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

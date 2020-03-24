@@ -13,4 +13,10 @@ class websiteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NewsWebsite
-        fields = ['name', 'category', 'articles']
+        fields = ['id', 'name', 'category', 'clicks', 'articles']
+
+
+class websiteUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewsWebsite
+        fields = ['id', 'clicks']

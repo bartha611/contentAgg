@@ -48,6 +48,14 @@ INSTALLED_APPS = [
     'Profile',
     'rest_framework',
     'webpack_loader',
+    'django_crontab',
+]
+
+CRONJOBS = [
+    ('50 18 * * *', 'scraper.cron.getNytArticles'),
+    ('50 18 * * *', 'scraper.cron.getNytArticles'),
+    ('50 18 * * *', 'scraper.cron.getNytArticles'),
+
 ]
 
 WEBPACK_LOADER = {
